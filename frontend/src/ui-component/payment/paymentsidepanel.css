@@ -8,7 +8,8 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     z-index: 10000000;
 }
-.MuiPaper-root{
+
+.MuiPaper-root {
     overflow: visible !important;
 }
 
@@ -84,7 +85,7 @@
 .sidepanel-icon {
     display: flex;
     margin-left: -25%;
-    margin-top:-10px;
+    margin-top: -10px;
 }
 
 .salary-sidepanel-container h2 {
@@ -93,7 +94,7 @@
 
 .salary-sidepanel-box2 {
     display: flex;
-    margin-top:-20px;
+    margin-top: -20px;
 }
 
 .salary-sidepanel-box2 div {
@@ -104,9 +105,11 @@
 salary-sidepanel-box-cont, .salary-sidepanel-box2 div p {
     color: #676767;
 }
+
 .salary-sidepanel-box-cont, .salary-sidepanel-box2 div b {
     color: #212121;
 }
+
 .salary-sidepanel-box2 div:nth-child(1) {
     border-right: 1px solid gray;
 }
@@ -140,4 +143,18 @@ salary-sidepanel-box-cont, .salary-sidepanel-box2 div p {
     width: 100%;
     text-align: center;
     margin: 10px;
+}
+
+.allowance::-webkit-scrollbar {
+    width: 2px;
+}
+
+.allowance::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(216, 216, 216, 0.448);
+    border-radius: 10px;
+}
+
+.allowance::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgb(169, 169, 169);
 }

@@ -197,10 +197,10 @@ const ECRChallan = () => {
                                             <TableCell align="center">
                                                 {Math.round(
                                                     (item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth +
-                                                        (item?.salaryDetails?.hra * count.count) / totalDaysOfMonth +
-                                                        (item?.salaryDetails?.con * count.count) / totalDaysOfMonth +
-                                                        (item?.salaryDetails?.medical * count.count) / totalDaysOfMonth +
-                                                        (item?.salaryDetails?.education * count.count) / totalDaysOfMonth
+                                                    (item?.salaryDetails?.hra * count.count) / totalDaysOfMonth +
+                                                    (item?.salaryDetails?.con * count.count) / totalDaysOfMonth +
+                                                    (item?.salaryDetails?.medical * count.count) / totalDaysOfMonth +
+                                                    (item?.salaryDetails?.education * count.count) / totalDaysOfMonth
                                                 )}
                                             </TableCell>
                                             <TableCell align="center">
@@ -208,11 +208,11 @@ const ECRChallan = () => {
                                             </TableCell>
                                             <TableCell align="center">
                                                 {date.getFullYear() - oldDate.getFullYear() >= 58
-                                                    ? 0
-                                                    : Math.round((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}
+                                                    ? 0 : Math.round((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? 15000
+                                                        : Math.round((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}
                                             </TableCell>
                                             <TableCell align="center">
-                                                {Math.round((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}
+                                                {Math.round((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? 15000 : Math.round((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}
                                             </TableCell>
                                             <TableCell align="center">
                                                 {Math.round(
@@ -221,24 +221,22 @@ const ECRChallan = () => {
                                             </TableCell>
                                             <TableCell align="center">
                                                 {date.getFullYear() - oldDate.getFullYear() >= 58
-                                                    ? 0
-                                                    : Math.round(
-                                                          (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) /
-                                                              100
-                                                      )}
+                                                    ? 0 : Math.round((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? Math.round((15000 * 8.33) / 100)
+                                                        : Math.round(
+                                                            (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) /
+                                                            100
+                                                        )}
                                             </TableCell>
                                             <TableCell align="center">
-                                                {date.getFullYear() - oldDate.getFullYear() >= 58
-                                                    ? Math.round(
-                                                          (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
-                                                      )
-                                                    : Math.round(
-                                                          (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
-                                                      ) -
-                                                      Math.round(
-                                                          (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) /
-                                                              100
-                                                      )}
+                                                {Math.round(
+                                                        (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
+                                                    ) -
+                                                    (date.getFullYear() - oldDate.getFullYear() >= 58
+                                                        ? 0 : Math.round((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? Math.round((15000 * 8.33) / 100)
+                                                            : Math.round(
+                                                                (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) /
+                                                                100
+                                                            ))}
                                             </TableCell>
                                             <TableCell align="center"> {totalDaysOfMonth - (count.count ? count.count : 0)} </TableCell>
 
@@ -265,55 +263,55 @@ const ECRChallan = () => {
             <div id="capture" style={{ display: 'none' }}>
                 <table style={{ textAlign: 'center', width: '100%', borderCollapse: 'collapse' }} width="100%">
                     <thead>
-                        <tr>
-                            <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="5">
-                                Total HR
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="5">
-                                Bank Statement Salary Disbursement {month[date.getMonth()]}-{date.getDate()}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Sr No</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Name</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Bank Account Number</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Bank IFSC Code</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Amount</th>
-                        </tr>
+                    <tr>
+                        <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="5">
+                            Total HR
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="5">
+                            Bank Statement Salary Disbursement {month[date.getMonth()]}-{date.getDate()}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Sr No</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Name</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Bank Account Number</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Bank IFSC Code</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Amount</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {orders?.employees?.map((item, index) => {
-                            const totalDaysOfMonth = parseInt(daysInMonth(date.getMonth() + 1, date.getFullYear()), 10);
-                            /* eslint no-underscore-dangle: 0 */
-                            const count = getAttendence(item._id);
-                            return (
-                                <tr>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>{index + 1}</td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {item.personalDetails.fullName}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {item.bankDetails.accountNo}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {item.bankDetails.ifscCode}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {Math.round(
-                                            (item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth +
-                                                (item?.salaryDetails?.hra * count.count) / totalDaysOfMonth +
-                                                (item?.salaryDetails?.con * count.count) / totalDaysOfMonth +
-                                                (item?.salaryDetails?.medical * count.count) / totalDaysOfMonth +
-                                                (item?.salaryDetails?.education * count.count) / totalDaysOfMonth +
-                                                (count.ot ? count.ot : 0) * (item?.salaryDetails?.dailyWages / 8) -
-                                                (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
-                                        )}
-                                    </td>
-                                </tr>
-                            );
-                        })}
+                    {orders?.employees?.map((item, index) => {
+                        const totalDaysOfMonth = parseInt(daysInMonth(date.getMonth() + 1, date.getFullYear()), 10);
+                        /* eslint no-underscore-dangle: 0 */
+                        const count = getAttendence(item._id);
+                        return (
+                            <tr>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>{index + 1}</td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {item.personalDetails.fullName}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {item.bankDetails.accountNo}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {item.bankDetails.ifscCode}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {Math.round(
+                                        (item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.hra * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.con * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.medical * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.education * count.count) / totalDaysOfMonth +
+                                        (count.ot ? count.ot : 0) * (item?.salaryDetails?.dailyWages / 8) -
+                                        (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
+                                    )}
+                                </td>
+                            </tr>
+                        );
+                    })}
                     </tbody>
                 </table>
             </div>
@@ -324,311 +322,311 @@ const ECRChallan = () => {
                     width="100%"
                 >
                     <thead>
-                        <tr>
-                            <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="21">
-                                SCHEDULE
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="21">
-                                [See Rule 2(1)]
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="21">
-                                FORM B
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="21">
-                                WAGE REGISTER FOR THE MONTH OF {month[date.getMonth()]}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="11">
-                                Name of Owner:
-                            </td>
-                            <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="10">
-                                LIN:
-                            </td>
-                        </tr>
-                        <tr>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Sr. No.
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                UAN
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Name of Employee{' '}
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Fathers Name
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Sex
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Nature of Work
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="2">
-                                Entilement
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Payable Days
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="2">
-                                Earned
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="2">
-                                OT
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Total Earned
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="2">
-                                Recovery
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Net Payment
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Employer Share PF Welfare Found
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Receipt by Employee / Bank Transaction ID
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Date of Payment
-                            </th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
-                                Remarks
-                            </th>
-                        </tr>
-                        <tr>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Particulars</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Rate</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Particulars</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Rate</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>OT Hrs</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>OT Wages</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Particulars</th>
-                            <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Rate</th>
-                        </tr>
+                    <tr>
+                        <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="21">
+                            SCHEDULE
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="21">
+                            [See Rule 2(1)]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="21">
+                            FORM B
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="21">
+                            WAGE REGISTER FOR THE MONTH OF {month[date.getMonth()]}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="11">
+                            Name of Owner:
+                        </td>
+                        <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="10">
+                            LIN:
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Sr. No.
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            UAN
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Name of Employee{' '}
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Fathers Name
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Sex
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Nature of Work
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="2">
+                            Entilement
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Payable Days
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="2">
+                            Earned
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="2">
+                            OT
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Total Earned
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} colSpan="2">
+                            Recovery
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Net Payment
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Employer Share PF Welfare Found
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Receipt by Employee / Bank Transaction ID
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Date of Payment
+                        </th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} rowSpan="2">
+                            Remarks
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Particulars</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Rate</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Particulars</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Rate</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>OT Hrs</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>OT Wages</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Particulars</th>
+                        <th style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>Rate</th>
+                    </tr>
                     </thead>
 
                     <tbody>
-                        {orders?.employees?.map((item, index) => {
-                            const totalDaysOfMonth = parseInt(daysInMonth(date.getMonth() + 1, date.getFullYear()), 10);
-                            /* eslint no-underscore-dangle: 0 */
-                            const count = getAttendence(item._id);
-                            return (
-                                <tr>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>{index + 1}</td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {item.companyDetails.UAN}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {item.personalDetails.fullName}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {item.personalDetails.fatherName}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {item.personalDetails.gender}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {item.companyDetails.designation}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        <tr>
-                                            <td>Basic</td>
-                                        </tr>
-                                        <tr>
-                                            <td>HRA</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Con</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Medical</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Edu</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total</td>
-                                        </tr>
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        <tr>
-                                            <td>{item.salaryDetails.basicSalary}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{item.salaryDetails.hra}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{item.salaryDetails.con}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{item.salaryDetails.medical}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{item.salaryDetails.education}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                {item.salaryDetails.basicSalary +
-                                                    item.salaryDetails.hra +
-                                                    item.salaryDetails.con +
-                                                    item.salaryDetails.medical +
-                                                    item.salaryDetails.education}
-                                            </td>
-                                        </tr>
-                                    </td>
+                    {orders?.employees?.map((item, index) => {
+                        const totalDaysOfMonth = parseInt(daysInMonth(date.getMonth() + 1, date.getFullYear()), 10);
+                        /* eslint no-underscore-dangle: 0 */
+                        const count = getAttendence(item._id);
+                        return (
+                            <tr>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>{index + 1}</td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {item.companyDetails.UAN}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {item.personalDetails.fullName}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {item.personalDetails.fatherName}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {item.personalDetails.gender}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {item.companyDetails.designation}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    <tr>
+                                        <td>Basic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>HRA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Con</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medical</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edu</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                    </tr>
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    <tr>
+                                        <td>{item.salaryDetails.basicSalary}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{item.salaryDetails.hra}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{item.salaryDetails.con}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{item.salaryDetails.medical}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{item.salaryDetails.education}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {item.salaryDetails.basicSalary +
+                                                item.salaryDetails.hra +
+                                                item.salaryDetails.con +
+                                                item.salaryDetails.medical +
+                                                item.salaryDetails.education}
+                                        </td>
+                                    </tr>
+                                </td>
 
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {count.count ? count.count : 0}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        <tr>
-                                            <td>Basic</td>
-                                        </tr>
-                                        <tr>
-                                            <td>HRA</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Con</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Medical</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Edu</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total</td>
-                                        </tr>
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        <tr>
-                                            <td>{Math.round((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{Math.round((item?.salaryDetails?.hra * count.count) / totalDaysOfMonth)}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{Math.round((item?.salaryDetails?.con * count.count) / totalDaysOfMonth)}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{Math.round((item?.salaryDetails?.medical * count.count) / totalDaysOfMonth)}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{Math.round((item?.salaryDetails?.education * count.count) / totalDaysOfMonth)}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                {Math.round(
-                                                    (item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth +
-                                                        (item?.salaryDetails?.hra * count.count) / totalDaysOfMonth +
-                                                        (item?.salaryDetails?.con * count.count) / totalDaysOfMonth +
-                                                        (item?.salaryDetails?.medical * count.count) / totalDaysOfMonth +
-                                                        (item?.salaryDetails?.education * count.count) / totalDaysOfMonth
-                                                )}
-                                            </td>
-                                        </tr>
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {count.ot ? count.ot : 0}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {item?.salaryDetails?.dailyWages / 8}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {Math.round(
-                                            (item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth +
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {count.count ? count.count : 0}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    <tr>
+                                        <td>Basic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>HRA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Con</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medical</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edu</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                    </tr>
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    <tr>
+                                        <td>{Math.round((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{Math.round((item?.salaryDetails?.hra * count.count) / totalDaysOfMonth)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{Math.round((item?.salaryDetails?.con * count.count) / totalDaysOfMonth)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{Math.round((item?.salaryDetails?.medical * count.count) / totalDaysOfMonth)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{Math.round((item?.salaryDetails?.education * count.count) / totalDaysOfMonth)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {Math.round(
+                                                (item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth +
                                                 (item?.salaryDetails?.hra * count.count) / totalDaysOfMonth +
                                                 (item?.salaryDetails?.con * count.count) / totalDaysOfMonth +
                                                 (item?.salaryDetails?.medical * count.count) / totalDaysOfMonth +
-                                                (item?.salaryDetails?.education * count.count) / totalDaysOfMonth +
-                                                (count.ot ? count.ot : 0) * (item?.salaryDetails?.dailyWages / 8)
-                                        )}
-                                    </td>
+                                                (item?.salaryDetails?.education * count.count) / totalDaysOfMonth
+                                            )}
+                                        </td>
+                                    </tr>
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {count.ot ? count.ot : 0}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {item?.salaryDetails?.dailyWages / 8}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {Math.round(
+                                        (item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.hra * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.con * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.medical * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.education * count.count) / totalDaysOfMonth +
+                                        (count.ot ? count.ot : 0) * (item?.salaryDetails?.dailyWages / 8)
+                                    )}
+                                </td>
 
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        <tr>
-                                            <td>PF</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Canteen</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Advance </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Loan</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tax</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total</td>
-                                        </tr>
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        <tr>
-                                            <td>
-                                                {Math.round(
-                                                    (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
-                                                )}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>{0}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{0}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{0}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{0}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                {Math.round(
-                                                    (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100 +
-                                                        0 +
-                                                        0 +
-                                                        0 +
-                                                        0
-                                                )}
-                                            </td>
-                                        </tr>
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
-                                        {Math.round(
-                                            (item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth +
-                                                (item?.salaryDetails?.hra * count.count) / totalDaysOfMonth +
-                                                (item?.salaryDetails?.con * count.count) / totalDaysOfMonth +
-                                                (item?.salaryDetails?.medical * count.count) / totalDaysOfMonth +
-                                                (item?.salaryDetails?.education * count.count) / totalDaysOfMonth +
-                                                (count.ot ? count.ot : 0) * (item?.salaryDetails?.dailyWages / 8) -
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    <tr>
+                                        <td>PF</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Canteen</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Advance </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Loan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                    </tr>
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    <tr>
+                                        <td>
+                                            {Math.round(
+                                                (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
+                                            )}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{0}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{0}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{0}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{0}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {Math.round(
                                                 (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100 +
                                                 0 +
                                                 0 +
                                                 0 +
                                                 0
-                                        )}
-                                    </td>
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} />
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} />
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} />
-                                    <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} />
-                                </tr>
-                            );
-                        })}
+                                            )}
+                                        </td>
+                                    </tr>
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }}>
+                                    {Math.round(
+                                        (item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.hra * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.con * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.medical * count.count) / totalDaysOfMonth +
+                                        (item?.salaryDetails?.education * count.count) / totalDaysOfMonth +
+                                        (count.ot ? count.ot : 0) * (item?.salaryDetails?.dailyWages / 8) -
+                                        (((item?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100 +
+                                        0 +
+                                        0 +
+                                        0 +
+                                        0
+                                    )}
+                                </td>
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} />
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} />
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} />
+                                <td style={{ border: '1px solid black', borderCollapse: 'collapse', padding: '5px' }} />
+                            </tr>
+                        );
+                    })}
                     </tbody>
                 </table>
             </div>

@@ -39,7 +39,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ==============================|| DASHBOARD - ACTIVE EMPLOYEE CARD ||============================== //
 
-const AddPFRemittanceCard = ({ isLoading }) => {
+const EarlyGoers = ({ isLoading }) => {
     const theme = useTheme();
 
     return (
@@ -70,7 +70,7 @@ const AddPFRemittanceCard = ({ isLoading }) => {
                                         mt: 0.45,
                                         mb: 0.45
                                     }}
-                                    primary={<Typography variant="h4">Add PF Remittance</Typography>}
+                                    primary={<Typography variant="h4">22</Typography>}
                                     secondary={
                                         <Typography
                                             variant="subtitle2"
@@ -79,7 +79,7 @@ const AddPFRemittanceCard = ({ isLoading }) => {
                                                 mt: 0.5
                                             }}
                                         >
-                                            PF Remittance
+                                            Early Goers
                                         </Typography>
                                     }
                                 />
@@ -92,8 +92,8 @@ const AddPFRemittanceCard = ({ isLoading }) => {
     );
 };
 
-AddPFRemittanceCard.propTypes = {
+EarlyGoers.propTypes = {
     isLoading: PropTypes.bool
 };
 
-export default AddPFRemittanceCard;
+export default EarlyGoers;

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import {
     ADD_ATTENDENCE_FAIL,
     ADD_ATTENDENCE_REQUEST,
@@ -11,7 +12,10 @@ import {
     GET_SINGLE_ATTENDENCE_SUCCESS,
     OVERTIME_ATTENDENCE_FAIL,
     OVERTIME_ATTENDENCE_REQUEST,
-    OVERTIME_ATTENDENCE_SUCCESS
+    OVERTIME_ATTENDENCE_SUCCESS,
+    UPDATE_ALLOWANCE_FAIL,
+    UPDATE_ALLOWANCE_REQUEST,
+    UPDATE_ALLOWANCE_SUCCESS
 } from '../constant/attendenceConstant';
 import { CLEAR_ERRORS } from '../constant/userConstant';
 
@@ -59,6 +63,36 @@ export const myAttendence = (page, month, year) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_ATTENDENCE_FAIL,
+            payload: error.response
+        });
+    }
+};
+
+
+// update allowances
+export const updateAllowances = (data, employee, attendanceYear, attendanceMonth) => async (dispatch) => {
+    axios.defaults.withCredentials = true;
+    try {
+        dispatch({ type: UPDATE_ALLOWANCE_REQUEST });
+
+        const x = await axios.post(` http://localhost:4000/api/v1/employee/allowances`, {
+            data: data, employee: employee, attendanceYear: attendanceYear, attendanceMonth: attendanceMonth
+        }, {
+            withCredentials: true
+        });
+
+        toast.success("Allowance updated successfully");
+
+        dispatch({
+            type: UPDATE_ALLOWANCE_SUCCESS,
+            payload: x
+        });
+    } catch (error) {
+        console.log(error.response.data.message);
+        toast.error(error.response.data.message.toString());
+
+        dispatch({
+            type: UPDATE_ALLOWANCE_FAIL,
             payload: error.response
         });
     }

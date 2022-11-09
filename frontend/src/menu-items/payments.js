@@ -1,5 +1,5 @@
 // assets
-import { IconCash, IconBusinessplan, IconReceipt, IconCashBanknote, IconReportMoney } from '@tabler/icons';
+import { IconCash, IconBusinessplan, IconReceipt, IconCashBanknote, IconReportMoney, IconReceiptRefund } from '@tabler/icons';
 
 // constant
 const icons = {
@@ -7,7 +7,8 @@ const icons = {
     IconBusinessplan,
     IconReceipt,
     IconCashBanknote,
-    IconReportMoney
+    IconReportMoney,
+    IconReceiptRefund
 };
 
 // ==============================|| PAYMENTS MENU ITEMS ||============================== //
@@ -17,6 +18,14 @@ const payments = {
     title: 'Payments',
     type: 'group',
     children: [
+        {
+            id: 'recovery-and-allowances',
+            title: 'Recovery & Allowances',
+            type: 'item',
+            url: '/payments/recovery-and-allowances',
+            icon: icons.IconReceiptRefund,
+            breadcrumbs: false
+        },
         {
             id: 'view-salary',
             title: 'View Salary',

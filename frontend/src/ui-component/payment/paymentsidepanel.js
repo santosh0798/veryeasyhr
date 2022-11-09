@@ -102,14 +102,23 @@ const PaymentSidepanel = (props) => {
                                 : Math.round(data?.salaryDetails?.education) * count.count}
                         </b>
                     </div>
-                    <div>
+                    {/* <div>
                         <p>Canteen</p>
                         <b>
                             {data?.companyDetails?.selectWages === 'Monthly Wages'
                                 ? Math.round((data?.salaryDetails?.canteen * count.count) / todaydays)
                                 : Math.round(data?.salaryDetails?.canteen) * count.count}
                         </b>
-                    </div>
+                    </div> */}
+                    {count.allowance?.filter((allowanceRow) => allowanceRow.type == "allowence")?.map((allowanceRow) => (
+                        <div>
+
+                            <p>{allowanceRow.category}</p>
+                            <b>
+                                {allowanceRow.value}
+                            </b>
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className="salary-sidepanel-box3">
@@ -121,7 +130,7 @@ const PaymentSidepanel = (props) => {
                             {data?.pfDetails?.aboveBasic === 'PF but restricted to 15k' ? (
                                 <b>{Math.round((15000 / todaydays / 12) * 100 * count.count)}</b>
                             ) : data?.pfDetails?.aboveBasic === 'PF on actual' ||
-                              (data?.pfDetails?.wereMember == 'Yes' && data?.pfDetails?.withdrawn == 'No') ? (
+                                (data?.pfDetails?.wereMember == 'Yes' && data?.pfDetails?.withdrawn == 'No') ? (
                                 <b>
                                     {data?.companyDetails?.selectWages === 'Monthly Wages'
                                         ? Math.round((((data?.salaryDetails?.basicSalary * count.count) / todaydays) * 12) / 100)
@@ -133,21 +142,18 @@ const PaymentSidepanel = (props) => {
                         </b>
                     </div>
                     <div>
-                        <p>Canteen</p>
-                        <b>0.00</b>
-                    </div>
-                    <div>
-                        <p>Advance Payment</p>
-                        <b>0.00</b>
-                    </div>
-                    <div>
-                        <p>Loan</p>
-                        <b>0.00</b>
-                    </div>
-                    <div>
                         <p>Tax</p>
                         <b>{Math.round(data?.salaryDetails?.incomeTax)}</b>
                     </div>
+                    {count.allowance?.filter((allowanceRow) => allowanceRow.type == "recovery")?.map((allowanceRow) => (
+                        <div>
+
+                            <p>{allowanceRow.category}</p>
+                            <b>
+                                {allowanceRow.value}
+                            </b>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

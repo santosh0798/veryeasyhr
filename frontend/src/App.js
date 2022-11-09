@@ -26,9 +26,10 @@ const App = () => {
 
     return (
         <StyledEngineProvider injectFirst>
+            <ToastContainer />
+
             <ThemeProvider theme={themes(customization)}>
                 <CssBaseline />
-                <ToastContainer />
                 <NavigationScroll>
                     <Routes />
                 </NavigationScroll>

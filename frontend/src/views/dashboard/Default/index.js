@@ -13,13 +13,18 @@ import { gridSpacing } from 'store/constant/customizationConstant';
 import NewJoiningCard from './NewJoiningCard';
 import { useDispatch, useSelector } from 'react-redux';
 import LatestClient from './LatestClient';
-import ViewPFRemittance from './ViewPFRemittance';
-import AddPFRemittanceCard from './AddPFRemittance';
+import ViewPFRemittance from './TodayAbsentees';
+import AddPFRemittanceCard from './TodayPresent';
 import { Link, useNavigate } from 'react-router-dom';
 import { myEmployee } from 'store/actions/employeeAction';
 import { allUsers } from 'store/actions/userActions';
 import AddRateCard from "./AddRateCategory";
 import ViewRateCard from "./ViewRateCategory";
+import TodayPresent from "./TodayPresent";
+import TodayAbsentees from "./TodayAbsentees";
+import EarlyGoers from "./EarlyGoers";
+import LateComers from "./LateComers";
+import BirthCard from "./BirthCard";
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
@@ -75,11 +80,12 @@ const Dashboard = () => {
                             </Grid>
 
                             <Grid item lg={3} md={6} sm={6} xs={12}>
-                                <TotalClientCard isLoading={isLoading} totalCli={users?.count - 1} />
-                            </Grid>
-                            <Grid item lg={3} md={6} sm={6} xs={12}>
                                 <AdminTotalEmployeesCard isLoading={isLoading} totalEmp={orders?.employeeCount} />
                             </Grid>
+                            <Grid item lg={3} md={6} sm={6} xs={12}>
+                                <TotalClientCard isLoading={isLoading} totalCli={users?.count - 1} />
+                            </Grid>
+
 
                         </Grid>
                     </Grid>
@@ -105,17 +111,28 @@ const Dashboard = () => {
                             <Grid item lg={4} md={6} sm={6} xs={12}>
                                 <AdminTotalEmployeesCard totalEmp={orders?.count} isLoading={isLoading} />
                             </Grid>
-                            <Grid item lg={4} md={6} sm={6} xs={12}>
-                                <NewJoiningCard totalEmp={orders?.count} isLoading={isLoading} />
+                            {/*<Grid item lg={4} md={6} sm={6} xs={12}>*/}
+                            {/*    <NewJoiningCard totalEmp={orders?.count} isLoading={isLoading} />*/}
+                            {/*</Grid>*/}
+
+                            <Grid item lg={4} md={12} sm={12} xs={12}>
+                                <Grid container spacing={gridSpacing}>
+                                    <Grid item sm={6} xs={12} md={6} lg={12}>
+                                        <TodayPresent isLoading={isLoading} />
+                                    </Grid>
+                                    <Grid item sm={6} xs={12} md={6} lg={12}>
+                                        <TodayAbsentees isLoading={isLoading} />
+                                    </Grid>
+                                </Grid>
                             </Grid>
 
                             <Grid item lg={4} md={12} sm={12} xs={12}>
                                 <Grid container spacing={gridSpacing}>
                                     <Grid item sm={6} xs={12} md={6} lg={12}>
-                                        <AddPFRemittanceCard isLoading={isLoading} />
+                                        <LateComers isLoading={isLoading} />
                                     </Grid>
                                     <Grid item sm={6} xs={12} md={6} lg={12}>
-                                        <ViewPFRemittance isLoading={isLoading} />
+                                        <EarlyGoers isLoading={isLoading} />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -127,7 +144,7 @@ const Dashboard = () => {
                                 <HolidayCard isLoading={isLoading} />
                             </Grid>
                             <Grid item xs={12} md={4}>
-                                <HolidayCard isLoading={isLoading} />
+                                <BirthCard isLoading={isLoading} />
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <LatestClient isLoading={isLoading} role={user} />

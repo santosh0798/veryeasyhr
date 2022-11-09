@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { useTheme, styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
-
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
 
 // assets
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
-
 // styles
 const CardWrapper = styled(MainCard)(({ theme }) => ({
     backgroundColor: 'white',
@@ -39,9 +37,9 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
     }
 }));
 
-// ==============================|| DASHBOARD - TOTAL INCOME LIGHT CARD ||============================== //
+// ==============================|| DASHBOARD - ACTIVE EMPLOYEE CARD ||============================== //
 
-const ViewRemittanceCard = ({ isLoading }) => {
+const LateComers = ({ isLoading }) => {
     const theme = useTheme();
 
     return (
@@ -59,11 +57,11 @@ const ViewRemittanceCard = ({ isLoading }) => {
                                         sx={{
                                             ...theme.typography.commonAvatar,
                                             ...theme.typography.largeAvatar,
-                                            backgroundColor: theme.palette.warning.light,
-                                            color: theme.palette.warning.dark
+                                            backgroundColor: theme.palette.primary[800],
+                                            color: '#fff'
                                         }}
                                     >
-                                        <ManageAccountsIcon fontSize="inherit" />
+                                        <AddIcon fontSize="inherit" />
                                     </Avatar>
                                 </ListItemAvatar>
                                 <ListItemText
@@ -72,7 +70,7 @@ const ViewRemittanceCard = ({ isLoading }) => {
                                         mt: 0.45,
                                         mb: 0.45
                                     }}
-                                    primary={<Typography variant="h4"> View PF Remittance </Typography>}
+                                    primary={<Typography variant="h4">22</Typography>}
                                     secondary={
                                         <Typography
                                             variant="subtitle2"
@@ -81,7 +79,7 @@ const ViewRemittanceCard = ({ isLoading }) => {
                                                 mt: 0.5
                                             }}
                                         >
-                                            PF Remittance
+                                            Late Comers
                                         </Typography>
                                     }
                                 />
@@ -94,8 +92,8 @@ const ViewRemittanceCard = ({ isLoading }) => {
     );
 };
 
-ViewRemittanceCard.propTypes = {
+LateComers.propTypes = {
     isLoading: PropTypes.bool
 };
 
-export default ViewRemittanceCard;
+export default LateComers;

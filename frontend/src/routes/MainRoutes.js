@@ -13,10 +13,11 @@ const AddEmployee = Loadable(lazy(() => import('views/employee/addEmployee')));
 const ViewEmployee = Loadable(lazy(() => import('views/employee/viewEmployee')));
 
 // Attendance Routing
-const AddAttendance = Loadable(lazy(() => import('views/attedance/addAttendance')));
-const ViewAttendance = Loadable(lazy(() => import('views/attedance/viewAttendance')));
-const Overtime = Loadable(lazy(() => import('views/attedance/overtime')));
-const LeaveManage = Loadable(lazy(() => import('views/attedance/leaveManage')));
+const MachineAttendance = Loadable(lazy(() => import('views/attendance/machineAttendance')));
+const AddAttendance = Loadable(lazy(() => import('views/attendance/addAttendance')));
+const ViewAttendance = Loadable(lazy(() => import('views/attendance/viewAttendance')));
+const Overtime = Loadable(lazy(() => import('views/attendance/overtime')));
+const LeaveManage = Loadable(lazy(() => import('views/attendance/leaveManage')));
 
 // Rates Routing
 const AddPureRate = Loadable(lazy(() => import('views/PcsRate/AddPureRate')));
@@ -25,6 +26,7 @@ const AddMixRate = Loadable(lazy(() => import('views/PcsRate/AddMixRate')));
 const ViewMixRate = Loadable(lazy(() => import('views/PcsRate/ViewMixRate')));
 
 // Payments Routing
+const RecoveryAllowances = Loadable(lazy(() => import('views/payments/recoveryAllowances')));
 const ViewSalary = Loadable(lazy(() => import('views/payments/viewSalary')));
 const ViewBonus = Loadable(lazy(() => import('views/payments/viewBonus')));
 const ECRChallan = Loadable(lazy(() => import('views/payments/ECRChallan')));
@@ -59,6 +61,10 @@ const MainRoutes = {
             element: <ViewEmployee />
         },
         {
+            path: '/attendance/machine-attendance',
+            element: <MachineAttendance />
+        },
+        {
             path: '/attendance/add-attendance',
             element: <AddAttendance />
         },
@@ -89,6 +95,10 @@ const MainRoutes = {
         {
             path: '/piece-rate/view-mix-pcs-rate',
             element: <ViewMixRate/>
+        },
+        {
+            path: '/payments/recovery-and-allowances',
+            element: <RecoveryAllowances />
         },
         {
             path: '/payments/view-salary',

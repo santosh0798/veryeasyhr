@@ -17,6 +17,14 @@ const attendance = {
     type: 'group',
     children: [
         {
+            id: 'machineAttendance',
+            title: 'Machine Attendance',
+            type: 'item',
+            url: '/attendance/machine-attendance',
+            icon: icons.IconAlarm,
+            breadcrumbs: false
+        },
+        {
             id: 'addAttendance',
             title: 'Add Attendance',
             type: 'item',

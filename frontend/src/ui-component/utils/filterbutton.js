@@ -158,6 +158,9 @@ export function DownloadCsv(props) {
 
                 const count = getAttendence(orders?.employees[i]?._id);
                 console.log(count.count, totalDaysOfMonth, i)
+                const oldDate = new Date(orders?.employees[i]?.personalDetails.dob);
+
+
                 m = {};
                 m.UAN = orders?.employees[i]?.companyDetails?.UAN;
                 m.Name = orders?.employees[i]?.personalDetails?.fullName;
@@ -169,17 +172,29 @@ export function DownloadCsv(props) {
                     (orders?.employees[i]?.salaryDetails?.education * count.count) / totalDaysOfMonth
                 );
                 m.EPFWages = Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth);
-                m.EPSWages = Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth);
-                m.EDLIWages = Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth);
+                m.EPSWages = date.getFullYear() - oldDate.getFullYear() >= 58
+                    ? 0 : Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? 15000
+                        : Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth);
+                m.EDLIWages = Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? 15000 : Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth);
                 m.EPFContribution = Math.round(
                     (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
                 );
-                m.EPSContribution = Math.round(
-                    (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) / 100
-                );
+                m.EPSContribution = date.getFullYear() - oldDate.getFullYear() >= 58
+                    ? 0 : Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? Math.round((15000 * 8.33) / 100)
+                        : Math.round(
+                            (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) /
+                            100
+                        );
                 m.EPFEPSDIFF =
-                    Math.round((((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100) -
-                    Math.round((((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) / 100);
+                    Math.round(
+                        (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
+                    ) -
+                        (date.getFullYear() - oldDate.getFullYear() >= 58
+                        ? 0 : Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? Math.round((15000 * 8.33) / 100)
+                            : Math.round(
+                                (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) /
+                                100
+                            ));
                 m.NCPDAYS = totalDaysOfMonth - (count.count ? count.count : 0);
                 m.REFUNDOFADVANCE = 0;
 
@@ -192,14 +207,24 @@ export function DownloadCsv(props) {
                     (orders?.employees[i]?.salaryDetails?.con * count.count) / totalDaysOfMonth +
                     (orders?.employees[i]?.salaryDetails?.medical * count.count) / totalDaysOfMonth +
                     (orders?.employees[i]?.salaryDetails?.education * count.count) / totalDaysOfMonth
-                )}#~#${Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}#~#${Math.round(
-                    (orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth
-                )}#~#${Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}#~#${Math.round(
-                    (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
-                )}#~#${Math.round(
-                    (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) / 100
-                )}#~#${Math.round((((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100) -
-                Math.round((((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) / 100)
+                )}#~#${Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}#~#${date.getFullYear() - oldDate.getFullYear() >= 58
+                    ? 0 : Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? 15000
+                        : Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}#~#${Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? 15000 : Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth)}#~#${Math.round(
+                            (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
+                        )}#~#${date.getFullYear() - oldDate.getFullYear() >= 58
+                            ? 0 : Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? Math.round((15000 * 8.33) / 100)
+                                : Math.round(
+                                    (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) /
+                                    100
+                                )}#~#${Math.round(
+                                    (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 12) / 100
+                                ) -
+                                   ( date.getFullYear() - oldDate.getFullYear() >= 58
+                                    ? 0 : Math.round((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) > 15000 ? Math.round((15000 * 8.33) / 100)
+                                        : Math.round(
+                                            (((orders?.employees[i]?.salaryDetails?.basicSalary * count.count) / totalDaysOfMonth) * 8.33) /
+                                            100
+                                        ))
                     }#~#${totalDaysOfMonth - (count.count ? count.count : 0)}#~#${0}\n`;
                 x.push(m);
             }

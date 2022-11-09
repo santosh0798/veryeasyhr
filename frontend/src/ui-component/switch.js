@@ -21,7 +21,7 @@ export default function BasicSwitch(props) {
     React.useEffect(() => {
         /* eslint no-underscore-dangle: 0 */
         axios
-            .get(`http://localhost:4000/api/v1/employee/attendance/mylist/${date?.getMonth() + 1}/${date?.getFullYear()}/${data?._id}`, {
+            .get(`https://easyhr802.herokuapp.com/api/v1/employee/attendance/mylist/${date?.getMonth() + 1}/${date?.getFullYear()}/${data?._id}`, {
                 withCredentials: true
             })
             .then((res) => {
