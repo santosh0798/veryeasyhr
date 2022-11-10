@@ -294,7 +294,7 @@ const ViewSalary = () => {
                                                     item?.salaryDetails?.con * parseInt(count.count, 10) +
                                                     item?.salaryDetails?.medical * parseInt(count.count, 10) +
                                                     item?.salaryDetails?.education * parseInt(count.count, 10) +
-                                                    ((item?.salaryDetails?.basicSalary + item?.salaryDetails?.hra + item?.salaryDetails?.con + item?.salaryDetails?.medical + item?.salaryDetails?.education) / 4) * (count.ot ? count.ot : 0) -
+                                                    ((item?.salaryDetails?.basicSalary * parseInt(count.count, 10) + item?.salaryDetails?.hra * parseInt(count.count, 10) + item?.salaryDetails?.con * parseInt(count.count, 10) + item?.salaryDetails?.medical * parseInt(count.count, 10) + item?.salaryDetails?.education * parseInt(count.count, 10) ) / 26 / 4) * (count.ot ? count.ot : 0) -
                                                     (item?.salaryDetails?.basicSalary * parseInt(count.count, 10) * 12) / 100
                                                 ) - Math.round(count.allowance?.filter((allowanceRow) => allowanceRow?.type == "recovery")?.reduce(
                                                     (previousValue, currentValue) => previousValue + currentValue.value,
@@ -886,7 +886,7 @@ const ViewSalary = () => {
                                                     (item?.salaryDetails?.con * parseInt(count.count, 10)) +
                                                     (item?.salaryDetails?.medical * parseInt(count.count, 10)) +
                                                     (item?.salaryDetails?.education * parseInt(count.count, 10))
-                                                ) / 4)
+                                                ) / 26 / 4)
                                         )}
                                 </td>
 
@@ -905,13 +905,12 @@ const ViewSalary = () => {
                                             (count.ot ? count.ot : 0)
                                         )
                                         : Math.round(
-                                            Math.round(
                                                 ((item?.salaryDetails?.basicSalary * parseInt(count.count, 10)) +
                                                     (item?.salaryDetails?.hra * parseInt(count.count, 10)) +
                                                     (item?.salaryDetails?.con * parseInt(count.count, 10)) +
                                                     (item?.salaryDetails?.medical * parseInt(count.count, 10)) +
                                                     (item?.salaryDetails?.education * parseInt(count.count, 10))
-                                                ) / 4)
+                                                ) / 26 / 4 * (count.ot ? count.ot : 0)
                                         )}
                                 </td>
 
@@ -922,7 +921,16 @@ const ViewSalary = () => {
                                         (item?.salaryDetails?.hra * parseInt(count.count, 10)) / totalDaysOfMonth +
                                         (item?.salaryDetails?.con * parseInt(count.count, 10)) / totalDaysOfMonth +
                                         (item?.salaryDetails?.medical * parseInt(count.count, 10)) / totalDaysOfMonth +
-                                        (item?.salaryDetails?.education * parseInt(count.count, 10)) / totalDaysOfMonth
+                                        (item?.salaryDetails?.education * parseInt(count.count, 10)) / totalDaysOfMonth +
+                                        ((item?.salaryDetails?.basicSalary * parseInt(count.count, 10)) /
+                                            totalDaysOfMonth +
+                                            (item?.salaryDetails?.hra * parseInt(count.count, 10)) / totalDaysOfMonth +
+                                            (item?.salaryDetails?.con * parseInt(count.count, 10)) / totalDaysOfMonth +
+                                            (item?.salaryDetails?.medical * parseInt(count.count, 10)) /
+                                            totalDaysOfMonth +
+                                            (item?.salaryDetails?.education * parseInt(count.count, 10)) /
+                                            totalDaysOfMonth) / 26 / 4 *
+                                        (count.ot ? count.ot : 0)
                                     ) + Math.round(count.allowance?.filter((allowanceRow) => allowanceRow?.type == "allowence")?.reduce(
                                         (previousValue, currentValue) => previousValue + currentValue.value,
                                         0,
@@ -932,7 +940,13 @@ const ViewSalary = () => {
                                         item?.salaryDetails?.hra * parseInt(count.count, 10) +
                                         item?.salaryDetails?.con * parseInt(count.count, 10) +
                                         item?.salaryDetails?.medical * parseInt(count.count, 10) +
-                                        item?.salaryDetails?.education * parseInt(count.count, 10)
+                                        item?.salaryDetails?.education * parseInt(count.count, 10) +
+                                        ((item?.salaryDetails?.basicSalary * parseInt(count.count, 10)) +
+                                            (item?.salaryDetails?.hra * parseInt(count.count, 10)) +
+                                            (item?.salaryDetails?.con * parseInt(count.count, 10)) +
+                                            (item?.salaryDetails?.medical * parseInt(count.count, 10)) +
+                                            (item?.salaryDetails?.education * parseInt(count.count, 10))
+                                        ) / 26 / 4 * (count.ot ? count.ot : 0)
                                     ) + Math.round(count.allowance?.filter((allowanceRow) => allowanceRow?.type == "allowence")?.reduce(
                                         (previousValue, currentValue) => previousValue + currentValue.value,
                                         0,
